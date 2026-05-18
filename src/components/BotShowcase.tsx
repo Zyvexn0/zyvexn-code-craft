@@ -3,22 +3,32 @@ import { ExternalLink } from "lucide-react";
 interface BotShowcaseProps {
   name: string;
   textColor: string;
-  bgColor: string;
   description: string;
   features: string[];
-  images: { src: string; alt: string }[];
+  images?: { src: string; alt: string }[];
 }
 
-export function BotShowcase({ name, textColor, bgColor, description, features, images }: BotShowcaseProps) {
+export function BotShowcase({ name, textColor, description, features, images }: BotShowcaseProps) {
   return (
     <article className="rounded-3xl border border-border bg-card/60 p-6 shadow-[var(--shadow-card)] sm:p-8">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((img) => (
-          <div key={img.src} className="overflow-hidden rounded-xl border border-border bg-background/60">
-            <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" />
-          </div>
-        ))}
-      </div>
+      {images && images.length > 0 ? (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {images.map((img) => (
+            <div key={img.src} className="overflow-hidden rounded-xl border border-border bg-background/60">
+              <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div
+          className="flex h-48 items-center justify-center rounded-xl border border-dashed border-border bg-background/40"
+          style={{ color: textColor }}
+        >
+          <span className="text-sm font-semibold uppercase tracking-widest opacity-70">
+            {name} — podgląd wkrótce
+          </span>
+        </div>
+      )}
 
       <div className="mt-6">
         <h3 className="text-2xl font-bold" style={{ color: textColor }}>{name}</h3>
@@ -33,17 +43,9 @@ export function BotShowcase({ name, textColor, bgColor, description, features, i
             </li>
           ))}
         </ul>
-
-        <a
-          href="https://discord.gg/KRxqxkcW4R"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-          style={{ backgroundColor: bgColor }}
-        >
-          Zapytaj o Bota <ExternalLink className="h-4 w-4" />
-        </a>
       </div>
     </article>
   );
 }
+
+export { ExternalLink };

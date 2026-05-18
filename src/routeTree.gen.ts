@@ -9,20 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as BotyRouteImport } from './routes/boty'
 import { Route as IndexRouteImport } from './routes/index'
 
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BotyRoute = BotyRouteImport.update({
-  id: '/boty',
-  path: '/boty',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,50 +19,28 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/boty': typeof BotyRoute
-  '/kontakt': typeof KontaktRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/boty': typeof BotyRoute
-  '/kontakt': typeof KontaktRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/boty': typeof BotyRoute
-  '/kontakt': typeof KontaktRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/boty' | '/kontakt'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/boty' | '/kontakt'
-  id: '__root__' | '/' | '/boty' | '/kontakt'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BotyRoute: typeof BotyRoute
-  KontaktRoute: typeof KontaktRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/boty': {
-      id: '/boty'
-      path: '/boty'
-      fullPath: '/boty'
-      preLoaderRoute: typeof BotyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -87,8 +53,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BotyRoute: BotyRoute,
-  KontaktRoute: KontaktRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
