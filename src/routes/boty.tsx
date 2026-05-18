@@ -36,7 +36,8 @@ function BotyPage() {
       <div className="mt-16 space-y-10">
         <BotShowcase
           name="FirePull"
-          accentClass="text-[oklch(0.72_0.18_45)]"
+          textColor="oklch(0.72 0.18 45)"
+          bgColor="oklch(0.72 0.18 45)"
           description="Zaawansowany system ticketów i weryfikacji zaprojektowany do usprawnienia procesów wsparcia z intuicyjnym sterowaniem i potężnymi funkcjami automatyzacji."
           features={[
             "Wielokanałowe zarządzanie ticketami z niestandardowymi kategoriami",
@@ -54,7 +55,8 @@ function BotyPage() {
 
         <BotShowcase
           name="Marysia Client"
-          accentClass="text-[oklch(0.72_0.18_145)]"
+          textColor="oklch(0.72 0.18 145)"
+          bgColor="oklch(0.72 0.18 145)"
           description="Wszechstronny bot klimatyczny stworzony do zarządzania serwerem o naturalnym klimacie i kompleksowym narzędziom i nieszablonowymi rozwiązaniami."
           features={[
             "Zaawansowany pakiet moderacyjny z funkcjami auto-mod",
@@ -68,7 +70,8 @@ function BotyPage() {
 
         <BotShowcase
           name="Spider Shop Api"
-          accentClass="text-[oklch(0.72_0.18_200)]"
+          textColor="oklch(0.72 0.18 200)"
+          bgColor="oklch(0.72 0.18 200)"
           description="Kompleksowe rozwiązanie e-commerce dla serwerów Discord z natywnym kasą, profesjonalnym panelem i śledzeniem zamówień. Losowania rabatów, opinie i pełna obsługa klienta."
           features={[
             "Katalog produktów z kategoriami i wyszukiwarką",
