@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MessageCircle, Zap } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,11 +58,35 @@ function Index() {
 
           <div className="relative">
             <div
-              className="absolute -inset-4 rounded-3xl opacity-40 blur-3xl"
+              className="absolute -inset-4 rounded-3xl opacity-30 blur-3xl"
               style={{ background: "var(--gradient-accent)" }}
             />
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card">
-              <img src={heroPortrait} alt="Zyvexn portrait" className="aspect-square w-full object-cover" />
+            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card p-8 font-mono text-sm shadow-[var(--shadow-card)]">
+              <div className="flex items-center gap-1.5 border-b border-border pb-3">
+                <span className="h-3 w-3 rounded-full bg-destructive/70" />
+                <span className="h-3 w-3 rounded-full bg-accent/70" />
+                <span className="h-3 w-3 rounded-full bg-[oklch(0.7_0.18_145)]/70" />
+                <span className="ml-3 text-xs text-muted-foreground">~/zyvexn/bot.ts</span>
+              </div>
+              <pre className="mt-4 whitespace-pre-wrap text-xs leading-relaxed text-muted-foreground sm:text-sm">
+{`import { Client } from "discord.js";
+
+`}<span className="text-accent">{`const`}</span>{` bot = `}<span className="text-accent">{`new`}</span>{` Client({
+  intents: [
+    `}<span className="text-foreground">{`"Guilds"`}</span>{`,
+    `}<span className="text-foreground">{`"GuildMessages"`}</span>{`,
+  ],
+});
+
+bot.on(`}<span className="text-foreground">{`"ready"`}</span>{`, () => {
+  console.log(`}<span className="text-[oklch(0.7_0.18_145)]">{`"⚡ Zyvexn online"`}</span>{`);
+});
+
+bot.login(process.env.TOKEN);`}
+              </pre>
+              <div className="absolute bottom-6 right-6 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
+                ● online
+              </div>
             </div>
           </div>
         </div>
