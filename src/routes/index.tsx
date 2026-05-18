@@ -174,31 +174,6 @@ bot.login(process.env.TOKEN);`}
               ]}
             />
 
-            <BotShowcase
-              name="Vortmc"
-              textColor="oklch(0.7 0.2 290)"
-              description="Dedykowany bot Discord dla społeczności Minecraft. Integracja z serwerem MC, statystyki graczy, system whitelisty i zarządzanie społecznością."
-              features={[
-                "Integracja z serwerem Minecraft i synchronizacja statusu",
-                "System whitelisty i weryfikacji graczy",
-                "Statystyki graczy i ranking serwera",
-                "Powiadomienia o starcie/restarcie serwera",
-                "Komendy zarządzania dostępne z Discorda",
-              ]}
-            />
-
-            <BotShowcase
-              name="Amen"
-              textColor="oklch(0.7 0.2 350)"
-              description="Wielofunkcyjny bot społecznościowy z naciskiem na engagement, gry i interakcje między użytkownikami serwera."
-              features={[
-                "System ekonomii i wirtualnej waluty",
-                "Mini-gry i wyzwania społecznościowe",
-                "System poziomów i XP za aktywność",
-                "Konfigurowalne komendy i automaty",
-                "Panel administracyjny dla moderatorów",
-              ]}
-            />
           </div>
         </div>
       </section>
