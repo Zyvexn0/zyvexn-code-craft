@@ -1,6 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MessageCircle, Zap } from "lucide-react";
-
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight, MessageCircle, Zap, Users, Bitcoin, Smartphone, Banknote, CreditCard, Hash } from "lucide-react";
+import { BotShowcase } from "@/components/BotShowcase";
+import firepullCennik from "@/assets/firepull-cennik.png";
+import firepullWeryfikacja from "@/assets/firepull-weryfikacja.png";
+import firepullTicket from "@/assets/firepull-ticket.png";
+import marysiaTicket from "@/assets/marysia-ticket.png";
+import spiderRabat from "@/assets/spider-rabat.png";
+import spiderWynik from "@/assets/spider-wynik.png";
+import spiderOpinie from "@/assets/spider-opinie.png";
+import spiderWystaw from "@/assets/spider-wystaw.png";
+import spiderCennik from "@/assets/spider-cennik.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,10 +21,19 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const payments = [
+  { icon: Bitcoin, label: "LTC", desc: "Litecoin" },
+  { icon: Smartphone, label: "BLIK", desc: "Płatność BLIK" },
+  { icon: Banknote, label: "Przelew", desc: "Tradycyjny przelew" },
+  { icon: CreditCard, label: "PSC", desc: "PaySafeCard" },
+  { icon: Hash, label: "Kod BLIK", desc: "Doładowania" },
+];
+
 function Index() {
   return (
     <main>
-      <section className="relative overflow-hidden">
+      {/* HERO */}
+      <section id="home" className="relative overflow-hidden scroll-mt-16">
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:items-center lg:py-32">
           <div>
@@ -28,18 +46,18 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/boty"
+              <a
+                href="#boty"
                 className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
               >
                 Zobacz Moje Boty <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/kontakt"
+              </a>
+              <a
+                href="#kontakt"
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-card"
               >
                 <MessageCircle className="h-4 w-4" /> Skontaktuj się
-              </Link>
+              </a>
             </div>
 
             <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">
@@ -57,10 +75,7 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div
-              className="absolute -inset-4 rounded-3xl opacity-30 blur-3xl"
-              style={{ background: "var(--gradient-accent)" }}
-            />
+            <div className="absolute -inset-4 rounded-3xl opacity-30 blur-3xl" style={{ background: "var(--gradient-accent)" }} />
             <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card p-8 font-mono text-sm shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-1.5 border-b border-border pb-3">
                 <span className="h-3 w-3 rounded-full bg-destructive/70" />
@@ -71,7 +86,7 @@ function Index() {
               <pre className="mt-4 whitespace-pre-wrap text-xs leading-relaxed text-muted-foreground sm:text-sm">
 {`import { Client } from "discord.js";
 
-`}<span className="text-accent">{`const`}</span>{` bot = `}<span className="text-accent">{`new`}</span>{` Client({
+`}<span className="text-accent">const</span>{` bot = `}<span className="text-accent">new</span>{` Client({
   intents: [
     `}<span className="text-foreground">{`"Guilds"`}</span>{`,
     `}<span className="text-foreground">{`"GuildMessages"`}</span>{`,
@@ -92,35 +107,170 @@ bot.login(process.env.TOKEN);`}
         </div>
       </section>
 
-      <section className="border-t border-border bg-card/30">
-        <div className="mx-auto max-w-7xl px-6 py-20 text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent">
-            <Zap className="h-4 w-4" /> Co robię
+      {/* BOTY */}
+      <section id="boty" className="scroll-mt-16 border-t border-border bg-card/30">
+        <div className="mx-auto max-w-7xl px-6 py-20">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent">
+              <Zap className="h-4 w-4" /> Wyróżnione projekty
+            </div>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Boty Discord zbudowane na skalę</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Produkcyjne boty obsługujące tysiące użytkowników z niezawodnością i wydajnością klasy korporacyjnej.
+            </p>
           </div>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Boty Discord na każdą skalę</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Tickety, weryfikacja, sklepy, systemy opinii, panele administracyjne — buduję wszystko od zera, pod konkretne wymagania serwera.
-          </p>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {[
-              { t: "Systemy ticketów", d: "Wielokanałowe zarządzanie z kategoriami i automatyzacją." },
-              { t: "Weryfikacja", d: "Bezpieczne wejście na serwer z kontrolą ról." },
-              { t: "Sklepy & E-commerce", d: "Katalogi produktów, opinie, zamówienia i wypłaty." },
-            ].map((c) => (
-              <div key={c.t} className="rounded-2xl border border-border bg-card p-6 text-left">
-                <h3 className="font-semibold text-foreground">{c.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{c.d}</p>
+          <div className="mt-16 space-y-10">
+            <BotShowcase
+              name="FirePull"
+              textColor="oklch(0.72 0.18 45)"
+              description="Zaawansowany system ticketów i weryfikacji zaprojektowany do usprawnienia procesów wsparcia z intuicyjnym sterowaniem i potężnymi funkcjami automatyzacji."
+              features={[
+                "Wielokanałowe zarządzanie ticketami z niestandardowymi kategoriami",
+                "Automatyczne kierowanie ticketów i przypisywanie priorytetów",
+                "System weryfikacji nowych członków",
+                "Cennik produktów z aktualizacją na żywo",
+                "Kontrola dostępu oparta na rolach dla zespołów wsparcia",
+              ]}
+              images={[
+                { src: firepullCennik, alt: "FirePull cennik" },
+                { src: firepullWeryfikacja, alt: "FirePull weryfikacja" },
+                { src: firepullTicket, alt: "FirePull ticket" },
+              ]}
+            />
+
+            <BotShowcase
+              name="Marysia Client"
+              textColor="oklch(0.72 0.18 145)"
+              description="Wszechstronny bot klimatyczny stworzony do zarządzania serwerem o naturalnym klimacie i kompleksowym narzędziom i nieszablonowymi rozwiązaniami."
+              features={[
+                "Zaawansowany pakiet moderacyjny z funkcjami auto-mod",
+                "Niestandardowy system ticketów dopasowany do brandu",
+                "Automatyczna wiadomość powitalna i pożegnalna",
+                "Statystyki serwera i śledzenie członków",
+                "Integracja z zewnętrznymi API i webhookami",
+              ]}
+              images={[{ src: marysiaTicket, alt: "Marysia Client ticket" }]}
+            />
+
+            <BotShowcase
+              name="Spider Shop Api"
+              textColor="oklch(0.72 0.18 200)"
+              description="Kompleksowe rozwiązanie e-commerce dla serwerów Discord z natywnym kasą, profesjonalnym panelem i śledzeniem zamówień. Losowania rabatów, opinie i pełna obsługa klienta."
+              features={[
+                "Katalog produktów z kategoriami i wyszukiwarką",
+                "System losowania rabatów dla klientów",
+                "Automatyczna realizacja zamówień i dostarczanie",
+                "Historia zakupów klienta i panel zamówień",
+                "Panel administratora do analityki sprzedaży",
+                "System opinii z oceną gwiazdkową",
+              ]}
+              images={[
+                { src: spiderCennik, alt: "Spider cennik" },
+                { src: spiderRabat, alt: "Spider losowanie rabatu" },
+                { src: spiderWynik, alt: "Spider wynik losowania" },
+                { src: spiderOpinie, alt: "Spider opinie" },
+                { src: spiderWystaw, alt: "Spider wystaw opinię" },
+              ]}
+            />
+
+            <BotShowcase
+              name="Vortmc"
+              textColor="oklch(0.7 0.2 290)"
+              description="Dedykowany bot Discord dla społeczności Minecraft. Integracja z serwerem MC, statystyki graczy, system whitelisty i zarządzanie społecznością."
+              features={[
+                "Integracja z serwerem Minecraft i synchronizacja statusu",
+                "System whitelisty i weryfikacji graczy",
+                "Statystyki graczy i ranking serwera",
+                "Powiadomienia o starcie/restarcie serwera",
+                "Komendy zarządzania dostępne z Discorda",
+              ]}
+            />
+
+            <BotShowcase
+              name="Amen"
+              textColor="oklch(0.7 0.2 350)"
+              description="Wielofunkcyjny bot społecznościowy z naciskiem na engagement, gry i interakcje między użytkownikami serwera."
+              features={[
+                "System ekonomii i wirtualnej waluty",
+                "Mini-gry i wyzwania społecznościowe",
+                "System poziomów i XP za aktywność",
+                "Konfigurowalne komendy i automaty",
+                "Panel administracyjny dla moderatorów",
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* KONTAKT */}
+      <section id="kontakt" className="scroll-mt-16 border-t border-border">
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <div className="text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-border bg-card text-accent">
+              <MessageCircle className="h-6 w-6" />
+            </div>
+            <h2 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">Zbudujmy coś razem</h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+              Potrzebujesz niestandardowego bota Discord dla swojego serwera? Skontaktuj się ze mną na Discordzie, aby omówić wymagania Twojego projektu.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-accent">
+                <MessageCircle className="h-5 w-5" />
               </div>
-            ))}
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Discord</p>
+                <p className="text-lg font-semibold text-foreground">Zyvexn.</p>
+              </div>
+            </div>
+            <a
+              href="https://discord.gg/KRxqxkcW4R"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:bg-secondary"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-accent">
+                <Users className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Serwer Discord</p>
+                <p className="text-lg font-semibold text-foreground">ZyvexSpace</p>
+              </div>
+            </a>
           </div>
 
-          <Link
-            to="/boty"
-            className="mt-12 inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+          <a
+            href="https://discord.gg/KRxqxkcW4R"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-4 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-glow)] transition-opacity hover:opacity-90"
           >
-            Zobacz portfolio <ArrowRight className="h-4 w-4" />
-          </Link>
+            <MessageCircle className="h-4 w-4" /> Napisz na Discordzie
+          </a>
+
+          <div className="mt-20">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-widest text-accent">Metody płatności</p>
+              <h3 className="mt-3 text-3xl font-bold tracking-tight">Akceptowane formy płatności</h3>
+              <p className="mt-3 text-muted-foreground">Wygodnie i bezpiecznie — wybierz to, co Ci odpowiada.</p>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {payments.map((p) => (
+                <div key={p.label} className="rounded-2xl border border-border bg-card p-5 text-center">
+                  <p.icon className="mx-auto h-6 w-6 text-accent" />
+                  <p className="mt-3 font-semibold text-foreground">{p.label}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <footer className="mt-20 border-t border-border pt-8 text-center text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Zyvexn. — 3 lata bot devu na Discordzie.
+          </footer>
         </div>
       </section>
     </main>
